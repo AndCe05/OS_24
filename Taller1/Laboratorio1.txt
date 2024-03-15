@@ -1,0 +1,90 @@
+
+const int pinVerde = 11; 
+const int pinRojo = 12; 
+const int pinAmarillo = 13; 
+
+int estadoVerde = LOW;
+int estadoRojo = LOW; 
+int estadoAmarillo = LOW; 
+
+void setup() {
+ 
+  pinMode(pinVerde, OUTPUT);
+  pinMode(pinRojo, OUTPUT);
+  pinMode(pinAmarillo, OUTPUT);
+
+  
+  Serial.begin(9600);
+}
+
+void loop() {
+  if (Serial.available()) {
+    char comando = Serial.read();
+
+    switch (comando) {
+      case '1':
+        estadoVerde = HIGH;
+        digitalWrite(pinVerde, HIGH);
+        break;
+
+      case '2': 
+        estadoVerde = LOW;
+        digitalWrite(pinVerde, LOW);
+        break;
+
+      case '3': 
+        estadoRojo = HIGH;
+        digitalWrite(pinRojo, HIGH);
+        break;
+
+      case '4': 
+        estadoRojo = LOW;
+        digitalWrite(pinRojo, LOW);
+        break;
+
+      case '5':
+        estadoAmarillo = HIGH;
+        digitalWrite(pinAmarillo, HIGH);
+        break;
+
+      case '6':
+        estadoAmarillo = LOW;
+        digitalWrite(pinAmarillo, LOW);
+        break;
+
+      case '7': 
+        estadoVerde = HIGH;
+        estadoRojo = HIGH;
+        estadoAmarillo = HIGH;
+        digitalWrite(pinVerde, HIGH);
+        digitalWrite(pinRojo, HIGH);
+        digitalWrite(pinAmarillo, HIGH);
+        break;
+
+      case '8': 
+        estadoVerde = LOW;
+        estadoRojo = LOW;
+        estadoAmarillo = LOW;
+        digitalWrite(pinVerde, LOW);
+        digitalWrite(pinRojo, LOW);
+        digitalWrite(pinAmarillo, LOW);
+        break;
+
+      case '9':
+ 
+        while (true) {
+        digitalWrite(pinVerde, HIGH);
+        digitalWrite(pinRojo, HIGH);
+        digitalWrite(pinAmarillo, HIGH);
+        delay(500);
+
+        digitalWrite(pinVerde, LOW);
+        digitalWrite(pinRojo, LOW);
+        digitalWrite(pinAmarillo, LOW);
+        delay(500);
+  }
+  break;
+
+    }
+  }
+}
